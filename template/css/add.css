@@ -1,0 +1,36 @@
+hr.style3 {
+	border-top: 3px double #8c8b8b;
+  width: 100%;
+  /* padding: auto 0 auto 0;
+  margin:  auto 0 auto 0; */
+}
+
+.text-are-panjang {
+  padding: 1.3rem 1.3rem 10rem 1.3rem;
+  font-size: 1.05rem;
+  line-height: 20px;
+}
+
+.label-desc {
+  font-size: 0.75rem;
+  line-height: 12px;
+  color:#76838F;
+}
+
+.label-desc code{
+  font-size: 0.75rem;
+}
+
+.judul-desc{
+  font-size: 0.85rem;
+  line-height: 12px;
+  color:#76838F;
+  margin-top: 26px;
+}
+
+.judul-desc-1 {
+  font-size: 0.85rem;
+  line-height: 20px;
+  color:#76838F;
+  margin-bottom: 25px;
+}
