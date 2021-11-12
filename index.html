@@ -48,26 +48,26 @@
                             <label for="exampleInputName1">Pilihan Pemateri : <span style="color:red">*</span></label>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="pilihan-pemateri" id="optionsRadios1" value="Delvito Rahim Derivansyah" checked>
-                                Delvito Rahim Derivansyah "Materi 1 : Exceed Your Limits"
+                                <input type="radio" class="form-check-input" name="pilihan-pemateri" id="optionsRadios1" value="Rachmat Purwa Saputra" checked>
+                                Rachmat Purwa Saputra "Materi 1 : Kenalan dengan Bahasa Asing, Yuk"
                               </label>
                             </div>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="pilihan-pemateri" id="optionsRadios1" value="Diana Fauziah">
-                                Diana Fauziah "Materi 2 : Memimpin itu indah, dipimpin itu berkah"
+                                <input type="radio" class="form-check-input" name="pilihan-pemateri" id="optionsRadios1" value="Syelvie Ira Ratna Mulia">
+                                Syelvie Ira Ratna Mulia "Materi 2 : A little thing called passion"
                               </label>
                             </div>
                             <div class="form-check">
                               <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="pilihan-pemateri" id="optionsRadios1" value="Mochamad Fadillah Wijaya">
-                                Mochamad Fadillah Wijaya "Materi 3 : Forgive != Forget"
+                                <input type="radio" class="form-check-input" name="pilihan-pemateri" id="optionsRadios1" value="Adhitia Zain Nurrizki">
+                                Adhitia Zain Nurrizki "Materi 3 : Kolaborasi Aksi"
                               </label>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <button type="submit" class="me-2 btn btn-primary btn-kirim">Kirim</button>
+                      <button type="submit" class="me-2 btn btn-primary btn-kirim" onclick="validateForm()">Kirim</button>
                       <button class="btn btn-light btnCancel" onclick="buttonCancel()">Cancel</button>
                       <button class="btn btn-dark btn-loading d-none" type="button" disabled>
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -102,35 +102,44 @@
         function buttonCancel() {
             location.reload();
         }
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxhopVsiUSu9-PxyYeN86mLtlkZl83jv9KBwzXduXH6IcUKKRnnLNm8wPbwx4iyC6luVw/exec';
-        const form = document.forms['form-speakupday2021'];
-        const btnKirim = document.querySelector('.btn-kirim');
-        const btnLoading = document.querySelector('.btn-loading');
-        const myAlert = document.querySelector('.my-alert');
-        const btnCancel = document.querySelector('.btnCancel');
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // ketika tombol submit diklik
-            // tampilkan tombol loading, hilangkan tombol kirim
-            btnLoading.classList.toggle('d-none');
-            btnKirim.classList.toggle('d-none');
-            btnCancel.classList.toggle('d-none');
-            fetch(scriptURL, {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
-                .then((response) => {
-                    // tampilkan tombol kirim, hilangkan tombol loading
-                    btnLoading.classList.toggle('d-none');
-                    btnKirim.classList.toggle('d-none');
-                    // tampilkan alert
-                    myAlert.classList.toggle('d-none');
-                    // reset formnya
-                    form.reset();
-                    console.log('Success!', response);
-                })
-                .catch((error) => console.error('Error!', error.message));
-        });
+        function validateForm() {
+          const scriptURL = 'https://script.google.com/macros/s/AKfycbxhopVsiUSu9-PxyYeN86mLtlkZl83jv9KBwzXduXH6IcUKKRnnLNm8wPbwx4iyC6luVw/exec';
+          const form = document.forms['form-speakupday2021'];
+          const btnKirim = document.querySelector('.btn-kirim');
+          const btnLoading = document.querySelector('.btn-loading');
+          const myAlert = document.querySelector('.my-alert');
+          const btnCancel = document.querySelector('.btnCancel');
+          let x = document.forms['form-speakupday2021']['nama-lengkap'].value;
+          if (x == '') {
+            alert("Pastika semua data terisi!");
+            return false;
+          } else {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // ketika tombol submit diklik
+                // tampilkan tombol loading, hilangkan tombol kirim
+                btnLoading.classList.toggle('d-none');
+                btnKirim.classList.toggle('d-none');
+                btnCancel.classList.toggle('d-none');
+                fetch(scriptURL, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                    .then((response) => {
+                        // tampilkan tombol kirim, hilangkan tombol loading
+                        btnLoading.classList.toggle('d-none');
+                        btnKirim.classList.toggle('d-none');
+                        // tampilkan alert
+                        myAlert.classList.toggle('d-none');
+                        // reset formnya
+                        form.reset();
+                        console.log('Success!', response);
+                    })
+                    .catch((error) => console.error('Error!', error.message));
+            });
+            return true;
+          }
+        }
     </script>
     <!-- container-scroller -->
     <!-- plugins:js -->
